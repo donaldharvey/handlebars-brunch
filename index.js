@@ -57,7 +57,7 @@ HandlebarsCompiler.prototype.compile = function(data, path, callback) {
     }
 
     if (ns) {
-      key = ns + '.' + path.replace(/\\/g,'/').replace(this.pathReplace, '').replace(/\..+?$/, '').replace(/\//g,'.');
+      key = ns + '["' + path.replace(/\\/g,'/').replace(this.pathReplace, '').replace(/\..+?$/, '').replace(/\//g,'.').replace('"', '\"') + '"]';
       result = "Handlebars.initNS( '" + key + "' ); " + key + " = " + source;
     } else {
       result = umd(source);
